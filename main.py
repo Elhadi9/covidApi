@@ -71,33 +71,4 @@ async def upload_file(file:UploadFile):
         result = "Please Upload Usable Data File"
     return {"prediction": result,}    
 
-@app.post("/detectBreast/",)
-async def upload_file(file:UploadFile):
-    
-    data = pd.read_csv(file.file, header=None)
-    if len(data.columns) == 50:
-        prediction =pd.Series(model_Breast.predict(data))
-        print(prediction)
-        result = pd.DataFrame(prediction)
-        print(result)
-        result = result.replace({0: 'Normal', 1: 'Tumoral '})
-        result = result[0].iloc[0]
-    else:
-        result = "Please Upload Usable Data File"
-    return {"prediction": result,}    
-
-@app.post("/detectColon/",)
-async def upload_file(file:UploadFile):
-    
-    data = pd.read_csv(file.file, header=None)
-    if len(data.columns) == 50:
-        prediction =pd.Series(model_Colon.predict(data))
-        print(prediction)
-        result = pd.DataFrame(prediction)
-        print(result)
-        result = result.replace({0: 'Normal', 1: 'Tumoral '})
-        result = result[0].iloc[0]
-    else:
-        result = "Please Upload Usable Data File"
-    return {"prediction": result,}    
  

@@ -100,4 +100,4 @@ async def upload_file(file:UploadFile):
     else:
         result = "Please Upload Usable Data File"
     return {"prediction": result,}    
-
+ 
